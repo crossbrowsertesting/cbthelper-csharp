@@ -26,8 +26,8 @@ namespace cbthelper
         {
             this.hash = hash;
             this.testId = test.testId;
-            this.username = Example.username;
-            this.authkey = Example.authkey;
+            this.username = Globals.username;
+            this.authkey = Globals.authkey;
             getInfo();
         }
 
@@ -75,7 +75,7 @@ namespace cbthelper
 
             JObject snapJObject = JObject.Parse(json);
 
-           
+
             {
 
                 foreach (JProperty p in snapJObject.Properties())

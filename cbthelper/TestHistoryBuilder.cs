@@ -13,7 +13,7 @@ namespace cbthelper
     {
         //Builder to generate options for getting test history
 
-            //Options for changing the configuration for the test history api call
+        //Options for changing the configuration for the test history api call
         private string num;
         private string active;
         private string name;
@@ -33,15 +33,15 @@ namespace cbthelper
         private string username;
         //Login information for the Cross Browser Testing Selenium connection
         private string authkey;
-      
+
 
         public string BaseURL = "https://crossbrowsertesting.com/api/v3/selenium";
 
         public TestHistoryBuilder()
         {
-            this.username = Example.username;
-            this.authkey = Example.authkey;
-           
+            this.username = Globals.username;
+            this.authkey = Globals.authkey;
+
             num = "num=";
             active = "&active=";
             name = "&name=";
@@ -113,16 +113,16 @@ namespace cbthelper
         {
             this.endDate = "&end_date=" + endDate;
         }
-    
+
 
         //Used to parse JSON and turn it into a .Net object
         public void parseObject(JProperty jProperty)
         {
-           
+
 
             JObject jObject = (JObject)jProperty.Value;
 
-          
+
             {
                 foreach (JProperty p in jObject.Properties())
                 {
@@ -131,7 +131,7 @@ namespace cbthelper
                         if (p.Value.Type == JTokenType.String)
                         {
                             string name = p.Name;
-                          
+
                             {
                                 string value = (string)p.Value;
 
@@ -140,7 +140,7 @@ namespace cbthelper
                                     Console.WriteLine(value);
                                 }
 
-                                
+
                             }
                         }
                         if (p.Value.Type == JTokenType.Object)
@@ -191,7 +191,7 @@ namespace cbthelper
 
                             if (name == "selenium_test_id")
                             {
-                                
+
                             }
                         }
                         if (p.Value.Type == JTokenType.String)
@@ -202,8 +202,8 @@ namespace cbthelper
 
                                 if (name == "selenium_test_id")
                                 { }
-        
-                        
+
+
                             }
                         }
                         if (p.Value.Type == JTokenType.Object)
@@ -248,7 +248,7 @@ namespace cbthelper
             request.UserAgent = "HttpWebRequest";
 
             var response = (HttpWebResponse)request.GetResponse();
-          
+
             var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
 

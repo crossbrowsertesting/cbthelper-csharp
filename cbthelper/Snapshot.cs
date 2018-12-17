@@ -11,16 +11,16 @@ using Newtonsoft.Json.Linq;
 namespace cbthelper
 {
     public class Snapshot
-    { 
+    {
         //Represents a snapshot for selenium tests
-        
-            //Hash for the image. Returned by the API when taking a screenshot
+
+        //Hash for the image. Returned by the API when taking a screenshot
         string hash;
-            //Returned in Automated Test Object.  Corresponds to a Selenium test.
+        //Returned in Automated Test Object.  Corresponds to a Selenium test.
         string testId;
-            //CrossBrowserTesting Selenium username login information
+        //CrossBrowserTesting Selenium username login information
         string username;
-            //CrossBrowserTesting Selenium authkey login information
+        //CrossBrowserTesting Selenium authkey login information
         string authkey;
 
         //link to selenium api for CrossBrowserTesting
@@ -30,8 +30,8 @@ namespace cbthelper
         {
             this.hash = hash;
             this.testId = test.testId;
-            this.username = Example.username;
-            this.authkey = Example.authkey;
+            this.username = Globals.username;
+            this.authkey = Globals.authkey;
             getInfo();
         }
 
@@ -73,13 +73,13 @@ namespace cbthelper
             //Parses the JSON to get the download url for the snapshot image
 
             JObject snapJObject = JObject.Parse(json);
-            
+
             {
 
-                foreach(JProperty p in snapJObject.Properties())
+                foreach (JProperty p in snapJObject.Properties())
                 {
 
-                    if(p.Value.Type == JTokenType.String)
+                    if (p.Value.Type == JTokenType.String)
                     {
                         string name = p.Name;
                         string value = (string)p.Value;
@@ -88,7 +88,7 @@ namespace cbthelper
                             return value;
 
                     }
-                        
+
                 }
 
 

@@ -13,17 +13,17 @@ namespace cbthelper
     {
         //The Selenium session ID, usually from webdriver
         public string testId;
-       //The username automation login information for CrossBrowserTesting
+        //The username automation login information for CrossBrowserTesting
         string username;
         //The authkey automation login information for CrossBrowserTesting
-        string authkey; 
+        string authkey;
 
         public string BaseURL = "https://crossbrowsertesting.com/api/v3/selenium";
         public AutomatedTest(string testId)
         {
             this.testId = testId;
-            this.username = Example.username;
-            this.authkey = Example.authkey;
+            this.username = Globals.username;
+            this.authkey = Globals.authkey;
         }
 
 

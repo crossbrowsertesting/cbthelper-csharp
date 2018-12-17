@@ -15,7 +15,7 @@ namespace cbthelper
     {
         //Builder for generating selenium capabilities
 
-        DesiredCapabilities desiredCapabilities;
+        OpenQA.Selenium.RemoteSessionSettings desiredCapabilities;
 
         //the following strings are used to change capabilities of the test
         public string platform;
@@ -44,10 +44,10 @@ namespace cbthelper
 
         public CapsBuilder()
         {
-            this.username = Example.username;
-            this.authkey = Example.authkey;
+            this.username = Globals.username;
+            this.authkey = Globals.authkey;
             capabilities = new List<Capability>();
-            desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities = new OpenQA.Selenium.RemoteSessionSettings();
             parseBrowsers(getBrowsers());
 
             platform = "";
@@ -478,13 +478,13 @@ namespace cbthelper
 
         }
 
-        public DesiredCapabilities build()
+        public OpenQA.Selenium.RemoteSessionSettings build()
         {
             //Calls the function that decides which capability to use
 
             return _choose();
         }
-        public DesiredCapabilities _choose()
+        public OpenQA.Selenium.RemoteSessionSettings _choose()
         {
             //Searches through the capabilities and browsers list to find the best match according to user input 
 
@@ -499,20 +499,20 @@ namespace cbthelper
 
 
 
-            desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities = new OpenQA.Selenium.RemoteSessionSettings();
 
             if (browse != "")
-                desiredCapabilities.SetCapability("browserName", browserChosen.browserName);
+                desiredCapabilities.AddMetadataSetting("browserName", browserChosen.browserName);
             if (platform != "")
-                desiredCapabilities.SetCapability("platform", caps.platform);
+                desiredCapabilities.AddMetadataSetting("platform", caps.platform);
             if (width != "" && height != "")
-                desiredCapabilities.SetCapability("screen_resolution", width + "x" + height);
+                desiredCapabilities.AddMetadataSetting("screen_resolution", width + "x" + height);
             if (name != "")
-                desiredCapabilities.SetCapability("name", name);
+                desiredCapabilities.AddMetadataSetting("name", name);
             if (version != "")
-                desiredCapabilities.SetCapability("build", version);
-            desiredCapabilities.SetCapability("username", username);
-            desiredCapabilities.SetCapability("password", authkey);
+                desiredCapabilities.AddMetadataSetting("build", version);
+            desiredCapabilities.AddMetadataSetting("username", username);
+            desiredCapabilities.AddMetadataSetting("password", authkey);
 
 
             return desiredCapabilities;
